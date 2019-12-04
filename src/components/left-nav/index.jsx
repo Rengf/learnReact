@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import "./index.less";
 import Logo from "../../assets/images/logo192.png";
 import menuList from "../../config/menuConfig";
@@ -9,7 +9,7 @@ import { Menu, Icon } from "antd";
 
 const { SubMenu } = Menu;
 
-export default class leftNav extends React.Component {
+class leftNav extends React.Component {
   getMenuNodes_map = menuList => {
     return menuList.map(item => {
       if (!item.children) {
@@ -40,6 +40,7 @@ export default class leftNav extends React.Component {
   };
 
   getMenuNodes_reduce = menuList => {
+    const path = this.props.location.pathname;
     return menuList.reduce((pre, item) => {
       if (!item.children) {
         pre.push(
@@ -51,6 +52,11 @@ export default class leftNav extends React.Component {
           </Menu.Item>
         );
       } else {
+        const cItem = item.children.find(cItem => cItem.key === path);
+        if (cItem) {
+          this.openKey = item.key;
+        }
+
         pre.push(
           <SubMenu
             key={item.key}
@@ -68,87 +74,29 @@ export default class leftNav extends React.Component {
       return pre;
     }, []);
   };
-
+  componentWillMount() {
+    this.menuNodes = this.getMenuNodes_reduce(menuList);
+  }
   render() {
+    const path = this.props.location.pathname;
+    const openKey = this.openKey;
     return (
       <div className="left-nav">
         <Link to="/" className="left-nav-header">
           <img src={Logo} alt="logo" />
           <h1>我的后台</h1>
         </Link>
-        <Menu mode="inline" theme="dark">
+        <Menu
+          selectedKeys={[path]}
+          defaultOpenKeys={[openKey]}
+          mode="inline"
+          theme="dark"
+        >
           {this.getMenuNodes_reduce(menuList)}
-
-          {/* <Menu.Item key="1">
-            <Link to="/home">
-              <Icon type="pie-chart" />
-              <span>首页</span>
-            </Link>
-          </Menu.Item>
-          <SubMenu
-            key="sub1"
-            title={
-              <span>
-                <Icon type="mail" />
-                <span>商品</span>
-              </span>
-            }
-          >
-            <Menu.Item key="5">
-              <Link to="/category">
-                <Icon type="mail" />
-                <span>分类管理</span>
-              </Link>
-            </Menu.Item>
-            <Menu.Item key="6">
-              <Link to="product">
-                <Icon type="mail" />
-                <span>商品管理</span>
-              </Link>
-            </Menu.Item>
-          </SubMenu>
-          <Menu.Item key="7">
-            <Link to="/user">
-              <Icon type="pie-chart" />
-              <span>用户管理</span>
-            </Link>
-          </Menu.Item>
-          <Menu.Item key="8">
-            <Link to="/role">
-              <Icon type="pie-chart" />
-              <span>权限管理</span>
-            </Link>
-          </Menu.Item>
-          <SubMenu
-            key="sub2"
-            title={
-              <span>
-                <Icon type="mail" />
-                <span>图表</span>
-              </span>
-            }
-          >
-            <Menu.Item key="9">
-              <Link to="/charts/bar">
-                <Icon type="mail" />
-                <span>柱状图</span>
-              </Link>
-            </Menu.Item>
-            <Menu.Item key="10">
-              <Link to="/charts/line">
-                <Icon type="mail" />
-                <span>折线图</span>
-              </Link>
-            </Menu.Item>
-            <Menu.Item key="11">
-              <Link to="/charts/pie">
-                <Icon type="mail" />
-                <span>饼状图</span>
-              </Link>
-            </Menu.Item>
-          </SubMenu> */}
         </Menu>
       </div>
     );
   }
 }
+/*包装非路由组件 */
+export default withRouter(leftNav);

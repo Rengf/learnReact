@@ -1,4 +1,8 @@
+import jsonp from 'jsonp'
 import ajax from "./ajax";
+import {
+    message
+} from 'antd';
 
 const BASE_URL = "";
 
@@ -12,3 +16,28 @@ export const reqLogin = (data) => ajax(BASE_URL + "/api/user/login", {
 
 //获取验证码
 export const reqCaptcha = () => ajax(BASE_URL + "/main/getcaptcha", {}, "GET")
+
+/**jsonp请求的接口请求函数 */
+export const reqWeather = (city) => {
+    return new Promise((resolve, reject) => {
+        const url = 'http://api.map.baidu.com/telematics/v3/weather?location=北京&output=json&ak=94Tmshjhp03oul7xy95Gu3wwHkjGZvkk&mcode=EE:0C:C8:50:54:53:96:5A:55:8C:23:2F:93:7E:EB:AE:D8:C8:1B:F1;com.example.tangdekun.androidannotationsdemo——';
+        jsonp(url, {}, (err, data) => {
+            console.log(url, err, data)
+            if (!err && data.status === 'success') {
+                const {
+                    dayPictureUrl,
+                    weather
+                } = data.results[0].weather_data[0]
+                resolve({
+                    dayPictureUrl,
+                    weather
+                })
+            } else {
+                message.error('获取天气失败')
+            }
+        })
+    })
+
+}
+
+reqWeather('上海')

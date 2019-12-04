@@ -2,7 +2,7 @@ import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import memoryUtils from "../../utils/memoryUtils";
 import Leftnav from "../../components/left-nav/index.jsx";
-import MyHeader from "../../components/header";
+import Header from "../../components/header";
 import Home from "../home/home";
 import Category from "../category/category";
 import Product from "../product/product";
@@ -14,7 +14,7 @@ import Pie from "../charts/pie";
 
 import { Layout } from "antd";
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Footer, Sider, Content } = Layout;
 
 export default class Admin extends React.Component {
   render() {
@@ -28,10 +28,8 @@ export default class Admin extends React.Component {
           <Leftnav></Leftnav>
         </Sider>
         <Layout>
-          <Header>
-            <MyHeader></MyHeader>
-          </Header>
-          <Content>
+          <Header></Header>
+          <Content style={{ margin: "20px" }}>
             <Switch>
               <Route path="/home" component={Home}></Route>
               <Route path="/category" component={Category}></Route>
