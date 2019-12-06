@@ -40,4 +40,14 @@ export const reqWeather = (city) => {
 
 }
 
-reqWeather('上海')
+
+//获取分类列表
+export const reqCategoryList = () => ajax(BASE_URL + '/admin/getcategorylist', {}, 'GET')
+
+//添加商品分类
+export const reqAddCategory = (data) => ajax(BASE_URL + "/admin/addcategory", data, "POST")
+
+//获取商品列表
+export const reqGoodsList = (condition) => ajax(BASE_URL + '/admin/getgoodslist', {
+    condition
+}, 'POST')
