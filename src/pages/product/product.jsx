@@ -10,14 +10,14 @@ export default class Product extends React.Component {
     return (
       <Switch>
         {/* exact路径完全匹配 */}
-        <Route path="/product" exact component={ProductHome}></Route>
-        <Route path="/product/detail" exact component={ProductDetail}></Route>
+        <Route path="/goodslist" exact component={ProductHome}></Route>
+        <Route path="/goodsdetail" exact component={ProductDetail}></Route>
         <Route
-          path="/product/addupdate"
+          path="/goodsaddupdate"
           exact
           component={ProductAddUpdate}
         ></Route>
-        <Redirect to="/product"></Redirect>
+        <Redirect to="/goodslist"></Redirect>
       </Switch>
     );
   }

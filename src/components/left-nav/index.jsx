@@ -4,10 +4,15 @@ import { Link, withRouter } from "react-router-dom";
 import "./index.less";
 import Logo from "../../assets/images/logo192.png";
 import menuList from "../../config/menuConfig";
+// import iconFont from "../../assets/iconfont/iconfont.js";
 
 import { Menu, Icon } from "antd";
 
 const { SubMenu } = Menu;
+
+const IconFont = Icon.createFromIconfontCN({
+  scriptUrl: "//at.alicdn.com/t/font_1146140_bmjsgzmmuek.js"
+});
 
 class leftNav extends React.Component {
   getMenuNodes_map = menuList => {
@@ -16,7 +21,7 @@ class leftNav extends React.Component {
         return (
           <Menu.Item key={item.key}>
             <Link to={item.key}>
-              <Icon type={item.icon} />
+              <IconFont type={item.icon} />
               <span>{item.title}</span>
             </Link>
           </Menu.Item>
@@ -27,7 +32,7 @@ class leftNav extends React.Component {
             key={item.key}
             title={
               <span>
-                <Icon type={item.icon} />
+                <IconFont type={item.icon} />
                 <span>{item.title}</span>
               </span>
             }
@@ -46,7 +51,7 @@ class leftNav extends React.Component {
         pre.push(
           <Menu.Item key={item.key}>
             <Link to={item.key}>
-              <Icon type={item.icon} />
+              <IconFont type={item.icon} />
               <span>{item.title}</span>
             </Link>
           </Menu.Item>
@@ -62,7 +67,7 @@ class leftNav extends React.Component {
             key={item.key}
             title={
               <span>
-                <Icon type={item.icon} />
+                <IconFont type={item.icon} />
                 <span>{item.title}</span>
               </span>
             }

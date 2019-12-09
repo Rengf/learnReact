@@ -51,3 +51,8 @@ export const reqAddCategory = (data) => ajax(BASE_URL + "/admin/addcategory", da
 export const reqGoodsList = (condition) => ajax(BASE_URL + '/admin/getgoodslist', {
     condition
 }, 'POST')
+
+//获取订单列表
+export const reqOrderList = (condition) => ajax(BASE_URL + '/admin/getorderlist', {
+    condition
+}, 'POST')
