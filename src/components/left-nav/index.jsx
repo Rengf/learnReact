@@ -11,7 +11,7 @@ import { Menu, Icon } from "antd";
 const { SubMenu } = Menu;
 
 const IconFont = Icon.createFromIconfontCN({
-  scriptUrl: "//at.alicdn.com/t/font_1146140_bmjsgzmmuek.js"
+  scriptUrl: "//at.alicdn.com/t/font_1146139_74e7ouf89em.js"
 });
 
 class leftNav extends React.Component {

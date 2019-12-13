@@ -2,7 +2,9 @@ import React from "react";
 
 import LinkButton from "../../components/link-button";
 import { reqGoodsList } from "../../api/index";
+import "../../assets/css/common.css";
 import { Card, Select, Table, Button, Icon, Input, message, Modal } from "antd";
+import memoryUtils from "../../utils/memoryUtils";
 const Option = Select.Option;
 
 export default class ProductHome extends React.Component {
@@ -31,7 +33,14 @@ export default class ProductHome extends React.Component {
       {
         title: "描述",
         dataIndex: "goods_description",
-        key: "goods_description"
+        key: "goods_description",
+        render: goods_description => {
+          return (
+            <span
+              dangerouslySetInnerHTML={{ __html: goods_description }}
+            ></span>
+          );
+        }
       },
       {
         title: "价格",
@@ -53,9 +62,15 @@ export default class ProductHome extends React.Component {
         render: product => (
           <span>
             <LinkButton
-            // onClick={() => {
-            //   this.showUpdate(category);
-            // }}
+              onClick={() => this.props.history.push("/goods/goodsdetail")}
+            >
+              详情
+            </LinkButton>
+            <LinkButton
+              onClick={() => {
+                memoryUtils.product = product;
+                this.props.history.push("/goods/goodsaddupdate");
+              }}
             >
               修改
             </LinkButton>
@@ -104,7 +119,13 @@ export default class ProductHome extends React.Component {
       </span>
     );
     const extra = (
-      <Button type="primary">
+      <Button
+        type="primary"
+        onClick={() => {
+          memoryUtils.product = {};
+          this.props.history.push("/goods/goodsaddupdate");
+        }}
+      >
         <Icon type="plus"></Icon>
         添加商品
       </Button>

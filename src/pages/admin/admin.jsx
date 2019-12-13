@@ -33,7 +33,7 @@ export default class Admin extends React.Component {
             <Switch>
               <Route path="/home" component={Home}></Route>
               <Route path="/category" component={Category}></Route>
-              <Route path="/goodslist" component={Product}></Route>
+              <Route path="/goods" component={Product}></Route>
               <Route path="/userlist" component={User}></Route>
               <Route path="/orderlist" component={Orders}></Route>
               <Route path="/charts/bar" component={Bar}></Route>

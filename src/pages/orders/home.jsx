@@ -1,9 +1,9 @@
 import React from "react";
 
 import LinkButton from "../../components/link-button";
-import { reqOrderList } from "../../api/index";
+import { reqOrderList, reqSearchOrder } from "../../api/index";
 import { dateFormat } from "../../utils/dateUtils";
-import "./orders.less";
+import "../../assets/css/common.css";
 import { Card, Select, Table, Button, Icon, Input, message, Modal } from "antd";
 const Option = Select.Option;
 
@@ -12,7 +12,8 @@ export default class OrderHome extends React.Component {
     orderCount: 0,
     orderlists: [],
     page: 0,
-    pagesize: 10
+    pagesize: 10,
+    searchmsg: ""
   };
   initColumns = () => {
     this.columns = [
@@ -169,12 +170,20 @@ export default class OrderHome extends React.Component {
     ];
   };
 
-  getOrderList = async (limit = 10, pages = 0) => {
+  getOrderList = async (limit = 10, pages = 0, searchmsg = "") => {
     let data = {
       limit: limit,
       pages: pages
     };
-    const result = await reqOrderList(data);
+    let result = {};
+    if (searchmsg == "") {
+      result = await reqOrderList(data);
+    } else {
+      data.searchmsg = searchmsg;
+      result = await reqSearchOrder(data);
+      message.success(result.message);
+    }
+
     if (result.code === 0) {
       this.setState({
         orderCount: result.orderlist.count,
@@ -184,7 +193,17 @@ export default class OrderHome extends React.Component {
   };
 
   pageChange = page => {
-    this.getOrderList(page.pageSize, (page.current - 1) * page.pageSize);
+    const { searchmsg } = this.state;
+    this.getOrderList(
+      page.pageSize,
+      (page.current - 1) * page.pageSize,
+      searchmsg
+    );
+  };
+
+  searchOrder = () => {
+    const { searchmsg } = this.state;
+    this.getOrderList(10, 0, searchmsg);
   };
 
   componentWillMount() {
@@ -196,32 +215,30 @@ export default class OrderHome extends React.Component {
   }
 
   render() {
-    const { orderlists, orderCount } = this.state;
+    const { orderlists, orderCount, searchmsg } = this.state;
 
     const title = (
-      <span>
-        <Select value="1" style={{ width: 150 }}>
-          <Option value="1">按名称搜索</Option>
-          <Option value="2">按描述搜索</Option>
-        </Select>
-        <Input placeholder="关键字" style={{ width: 150, margin: "0 15px" }} />
-        <Button type="primary">搜索</Button>
-      </span>
-    );
-    const extra = (
-      <Button type="primary">
-        <Icon type="plus"></Icon>
-        添加商品
-      </Button>
+      <div>
+        <label htmlFor="Input">查询订单：</label>
+        <Input
+          placeholder="关键字"
+          value={searchmsg}
+          style={{ width: 150, margin: "0 15px" }}
+          onChange={event => this.setState({ searchmsg: event.target.value })}
+        />
+        <Button type="primary" onClick={this.searchOrder}>
+          查询
+        </Button>
+      </div>
     );
 
     return (
-      <Card title={title} extra={extra}>
+      <Card title={title}>
         <Table
           className="orderTable"
           bordered
           dataSource={orderlists}
-          rowKey="order_id"
+          rowKey="order_no"
           columns={this.columns}
           pagination={{
             showQuickJumper: true,

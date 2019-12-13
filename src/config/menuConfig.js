@@ -67,12 +67,12 @@ const menuList = [{
         children: [{
                 title: "添加商品",
                 icon: 'iconzelvxuanzefeiyongdaosanjiaoxingfandui',
-                key: "/addgoods"
+                key: "/goods/goodsaddupdate"
             },
             {
                 title: "商品列表",
                 icon: 'iconzelvxuanzefeiyongdaosanjiaoxingfandui',
-                key: "/goodslist"
+                key: "/goods/goodslist"
             }
         ]
     },

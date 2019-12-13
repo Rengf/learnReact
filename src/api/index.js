@@ -56,3 +56,11 @@ export const reqGoodsList = (condition) => ajax(BASE_URL + '/admin/getgoodslist'
 export const reqOrderList = (condition) => ajax(BASE_URL + '/admin/getorderlist', {
     condition
 }, 'POST')
+
+//搜索/查询订单
+export const reqSearchOrder = (data) => ajax(BASE_URL + "/admin/searchorder",
+    data, "POST")
+
+//添加商品
+export const reqAddGoods = (data) => ajax(BASE_URL + "/admin/addgoods",
+    data, "POST")

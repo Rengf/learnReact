@@ -45,7 +45,7 @@ export default class Category extends React.Component {
   };
 
   toProduct = id => {
-    this.props.history.replace("/product?categoryId=" + id);
+    this.props.history.replace("/goodslist");
   };
 
   showAdd = () => {

@@ -1,0 +1,115 @@
+.clearfix {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+.clearfix .img-box {
+  width: 120px;
+  height: 120px;
+  margin: 5px 10px;
+  border: 1px dashed #d9d9d9;
+}
+.clearfix .img-box .add-img {
+  display: block;
+  text-align: center;
+  height: 60px;
+}
+.clearfix .img-box .add-img i {
+  margin-top: 30px;
+  font-size: 32px;
+  color: #999;
+}
+.clearfix .img-box .upload {
+  text-align: center;
+}
+.clearfix .img-box .upload span {
+  color: #666;
+}
+.clearfix .file-img {
+  position: relative;
+}
+.clearfix .file-img .img {
+  width: 100px;
+  height: 100px;
+  margin: 10px 10px;
+}
+.clearfix .file-img .img img {
+  width: 100px;
+  height: 100px;
+}
+.clearfix .file-img .button-box {
+  display: none;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 10px;
+  left: 10px;
+}
+.clearfix .file-img .button-box span {
+  display: flex;
+  width: 80px;
+  height: 30px;
+  margin-left: 10px;
+  margin-top: 35px;
+  justify-items: center;
+}
+.clearfix .file-img .button-box span i {
+  color: #e1e1e1;
+  flex: 1;
+  font-size: 18px;
+  line-height: 30px;
+  cursor: pointer;
+}
+.clearfix .file-img .button-box span i:hover {
+  color: #fff;
+}
+.clearfix .file-img:hover .button-box {
+  display: block;
+  background: rgba(149, 148, 148, 0.2);
+}
+.clearfix .add-upload {
+  background: #fafafa;
+  position: relative;
+}
+.clearfix .add-upload input {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+.clearfix .add-upload:hover {
+  border: 1px dashed #1890ff;
+}
+.clearfix .hidden {
+  display: none;
+}
+.clearfix .big-img {
+  display: block;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  overflow: auto;
+  outline: 0;
+  background: rgba(90, 90, 90, 0.431);
+}
+.clearfix .big-img .big-img-box {
+  position: relative;
+  width: 520px;
+  height: 520px;
+  top: 50%;
+  left: 50%;
+  margin-top: -260px;
+  margin-left: -260px;
+  background: #fff;
+  border-radius: 5px;
+}
+.clearfix .big-img .big-img-box img {
+  width: 480px;
+  height: 480px;
+  margin: 20px 20px;
+}
