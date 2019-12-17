@@ -55,6 +55,7 @@ class ProductAddUpdate extends React.Component {
         formData.append("goods_description", goods_description);
         formData.append("stock", 0);
         const result = await reqAddGoods(formData);
+        console.log(result);
         if (result.code == 0) {
           message.success(result.message);
           this.props.history.replace("/goods/goodslist");

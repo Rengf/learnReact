@@ -52,7 +52,7 @@ export default class PicturesWall extends React.Component {
   componentWillMount() {
     if (!!this.props.imgs) {
       let { fileslist } = this.state;
-      fileslist.push(this.props.imgs);
+      fileslist.push(require("../../" + this.props.imgs));
       this.setState({ fileslist });
     }
   }
@@ -76,19 +76,21 @@ export default class PicturesWall extends React.Component {
           return (
             <div className="file-img img-box" key={index}>
               <div className="img">
-                <img src={item} alt="tupian" />
+                <img src={item} alt="商品图片" />
               </div>
               <div className="button-box">
                 <span>
                   <IconFont
+                    key="icon-eye"
                     type="icon-eye"
                     onClick={() => {
                       this.showBigImg(item);
                     }}
                   />
 
-                  <IconFont type="icon-xiazai" />
+                  <IconFont type="icon-xiazai" key="icon-xiazai" />
                   <IconFont
+                    key="icon-dustbin"
                     type="icon-dustbin"
                     onClick={() => {
                       this.deleteImg(index);

@@ -18,7 +18,7 @@ export default class RichTextEditor extends Component {
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
       xhr.open("POST", "/main/addimages");
-      // xhr.setRequestHeader("Authorization", "Client-ID XXXXX");
+      xhr.setRequestHeader("Authorization", "Client-ID XXXXX");
       const data = new FormData();
       data.append("files", file);
       xhr.send(data);

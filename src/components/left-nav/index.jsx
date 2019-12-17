@@ -4,7 +4,6 @@ import { Link, withRouter } from "react-router-dom";
 import "./index.less";
 import Logo from "../../assets/images/logo192.png";
 import menuList from "../../config/menuConfig";
-// import iconFont from "../../assets/iconfont/iconfont.js";
 
 import { Menu, Icon } from "antd";
 
